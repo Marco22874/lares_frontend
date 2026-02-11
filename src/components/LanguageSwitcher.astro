@@ -5,14 +5,22 @@
  * @date 2026-02-11
  * @description Language selector showing IT, EN, DE, FR
  *              links. Highlights the current locale.
+ *              Uses localizedPath to generate correct
+ *              slug for each target language.
  *
  * @param {string} locale - Current language code
- * @param {string} currentPath - Current page path
+ * @param {string} currentPath - Semantic route name
+ *                               (e.g. 'contact', not
+ *                               the slug 'contatti')
  * @returns Rendered language switcher
- * @update 2026-02-11
+ * @update 2026-02-11 - Fix: use localizedPath for
+ *         correct per-language slug generation
  */
 
-import { SUPPORTED_LOCALES } from '@lib/i18n.js';
+import {
+  SUPPORTED_LOCALES,
+  localizedPath,
+} from '@lib/i18n.js';
 
 interface Props
 {
@@ -34,7 +42,7 @@ const {
   {SUPPORTED_LOCALES.map((lang) =>
   {
     const href = currentPath
-      ? `/${lang}/${currentPath}/`
+      ? localizedPath(lang, currentPath)
       : `/${lang}/`;
     const isActive = lang === locale;
 
