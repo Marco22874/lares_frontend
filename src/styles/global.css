@@ -1,0 +1,199 @@
+/**
+ * @file global.css
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Global styles: CSS reset, custom
+ *              properties, and base typography.
+ *              Uses CSS Custom Properties for theming.
+ *
+ * @update_history
+ *   2026-02-11 - Initial creation
+ */
+
+/* =============================================
+   CSS Custom Properties (Design Tokens)
+   ============================================= */
+
+:root
+{
+  /* Colors - To be updated with brand colors */
+  --color-primary: #2d5016;
+  --color-primary-light: #4a7a2e;
+  --color-primary-dark: #1a3009;
+  --color-secondary: #8b6914;
+  --color-secondary-light: #b8912a;
+  --color-secondary-dark: #5e470d;
+
+  --color-bg: #ffffff;
+  --color-bg-alt: #f8f7f4;
+  --color-text: #2c2c2c;
+  --color-text-light: #5a5a5a;
+  --color-text-inverse: #ffffff;
+
+  --color-border: #e0ddd6;
+  --color-error: #c0392b;
+  --color-success: #27ae60;
+  --color-warning: #f39c12;
+
+  /* Typography */
+  --font-family-base:
+    'Segoe UI', system-ui, -apple-system,
+    sans-serif;
+  --font-family-heading:
+    'Georgia', 'Times New Roman', serif;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-md: 1.125rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
+  --line-height-relaxed: 1.8;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* Layout */
+  --max-width: 1200px;
+  --max-width-narrow: 800px;
+  --header-height: 4rem;
+
+  /* Borders */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+
+  /* Shadows */
+  --shadow-sm:
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg:
+    0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+/* =============================================
+   CSS Reset (Modern Minimal)
+   ============================================= */
+
+*,
+*::before,
+*::after
+{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html
+{
+  font-size: 100%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body
+{
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img,
+picture,
+video,
+svg
+{
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a
+{
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus-visible
+{
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+a:focus-visible
+{
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+button
+{
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:focus-visible
+{
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+ul,
+ol
+{
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+  font-family: var(--font-family-heading);
+  line-height: var(--line-height-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+
+/* Skip to content (accessibility) */
+.skip-link
+{
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--spacing-sm) var(--spacing-md);
+  z-index: 1000;
+}
+
+.skip-link:focus
+{
+  top: 0;
+}

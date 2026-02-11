@@ -1,0 +1,111 @@
+---
+/**
+ * @file GalleryGrid.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Responsive image gallery grid with
+ *              lightbox support and lazy loading.
+ *              Images fetched from Directus.
+ *
+ * @param {Array} images - Gallery image objects
+ * @param {string} locale - Current language code
+ * @returns Rendered gallery grid with lightbox
+ * @update 2026-02-11
+ */
+
+import { getAssetUrl } from '@lib/directus.js';
+import { encodeHTML } from '@lib/sanitize.js';
+
+interface GalleryImage
+{
+  id: string;
+  image: string;
+  translations?: Array<{
+    caption?: string;
+    alt_text?: string;
+  }>;
+}
+
+interface Props
+{
+  images: GalleryImage[];
+  locale: string;
+}
+
+const { images, locale } = Astro.props;
+---
+
+<div class="gallery-grid" id="gallery">
+  {images.map((item, index) =>
+  {
+    const translation =
+      item.translations?.[0] || {};
+    const caption = translation.caption || '';
+    const altText =
+      translation.alt_text || `Image ${index + 1}`;
+    const thumbUrl = getAssetUrl(item.image,
+    {
+      width: 400,
+      height: 400,
+      fit: 'cover',
+      quality: 80,
+      format: 'webp',
+    });
+    const fullUrl = getAssetUrl(item.image,
+    {
+      quality: 85,
+      format: 'webp',
+    });
+
+    return (
+      <div
+        class="gallery-item"
+        data-full-src={fullUrl}
+        data-caption={encodeHTML(caption)}
+        role="button"
+        tabindex="0"
+        aria-label={altText}
+      >
+        <img
+          class="gallery-item__img"
+          src={thumbUrl}
+          alt={altText}
+          loading="lazy"
+          decoding="async"
+          width="400"
+          height="400"
+        />
+        {caption && (
+          <div class="gallery-item__caption">
+            {caption}
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+{/* Lightbox overlay */}
+<div
+  class="lightbox"
+  id="lightbox"
+  role="dialog"
+  aria-label="Image viewer"
+  aria-hidden="true"
+>
+  <button
+    class="lightbox__close"
+    type="button"
+    aria-label="Close"
+  >
+    &times;
+  </button>
+  <img
+    class="lightbox__img"
+    id="lightbox-img"
+    src=""
+    alt=""
+  />
+</div>
+
+<script src="/scripts/gallery.js" defer></script>

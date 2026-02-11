@@ -1,0 +1,56 @@
+---
+/**
+ * @file en/services.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Services page (English). Card grid
+ *              of cohousing services from Directus.
+ *
+ * @returns Rendered services page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ServiceCard from
+  '@components/ServiceCard.astro';
+
+const locale = 'en';
+
+/*
+ * Production: fetch from Directus
+ * const services = await getCollection(
+ *   'services', locale,
+ *   { sort: 'sort',
+ *     'filter[status][_eq]': 'published' }
+ * );
+ */
+const services = [];
+---
+
+<BaseLayout
+  title="Services"
+  description="Discover the services of Lares Cohousing."
+  locale={locale}
+  currentPath="services"
+  pagePath="services"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">Services</h1>
+      <div class="grid grid--3">
+        {services.map((service) =>
+        {
+          const tr =
+            service.translations?.[0] || {};
+          return (
+            <ServiceCard
+              title={tr.title || ''}
+              description={tr.description || ''}
+              icon={service.icon}
+            />
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+/**
+ * @file it/contatti.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Contact page (Italian). Form with
+ *              whitelist validation, honeypot, and
+ *              server-side submission to prevent
+ *              XSS and SQL injection.
+ *
+ * @returns Rendered contact page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ContactForm from
+  '@components/ContactForm.astro';
+
+const locale = 'it';
+const directusUrl =
+  import.meta.env.PUBLIC_DIRECTUS_URL || '';
+---
+
+<BaseLayout
+  title="Contatti"
+  description="Contattaci per informazioni su Lares Cohousing."
+  locale={locale}
+  currentPath="contact"
+  pagePath="contatti"
+>
+  <section class="section">
+    <div
+      class="container container--narrow"
+      data-directus-url={directusUrl}
+    >
+      <h1 class="section__title">Contatti</h1>
+      <ContactForm locale={locale} />
+    </div>
+  </section>
+</BaseLayout>

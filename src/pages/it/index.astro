@@ -1,0 +1,72 @@
+---
+/**
+ * @file it/index.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Home page (Italian). Displays hero
+ *              section, intro text, services preview,
+ *              and call-to-action. Content fetched
+ *              from Directus at build time.
+ *
+ * @returns Rendered home page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { t, localizedPath } from '@lib/i18n.js';
+
+const locale = 'it';
+---
+
+<BaseLayout
+  title="Home"
+  description="Lares Cohousing - Vivere insieme, vivere meglio."
+  locale={locale}
+  currentPath="home"
+>
+  <section class="hero">
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__title">
+        Lares Cohousing
+      </h1>
+      <p class="hero__subtitle">
+        Vivere insieme, vivere meglio.
+      </p>
+      <a
+        href={localizedPath(locale, 'about')}
+        class="btn btn--primary"
+      >
+        {t(locale, 'nav_about')}
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section__title">
+        Benvenuti a Lares
+      </h2>
+      <!-- Content from Directus in production -->
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <h2 class="section__title">
+        {t(locale, 'nav_services')}
+      </h2>
+      <div class="grid grid--3">
+        <!-- ServiceCards from Directus -->
+      </div>
+      <div class="text-center mt-xl">
+        <a
+          href={localizedPath(locale, 'services')}
+          class="btn btn--outline"
+        >
+          {t(locale, 'nav_services')}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

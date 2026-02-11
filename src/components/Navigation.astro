@@ -1,0 +1,61 @@
+---
+/**
+ * @file Navigation.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Main navigation menu with localized
+ *              links. Highlights active page.
+ *
+ * @param {string} locale - Current language code
+ * @param {string} currentPath - Active page path
+ * @returns Rendered navigation list
+ * @update 2026-02-11
+ */
+
+import { t, localizedPath } from '@lib/i18n.js';
+
+interface Props
+{
+  locale: string;
+  currentPath?: string;
+}
+
+const {
+  locale,
+  currentPath = '',
+} = Astro.props;
+
+const navItems = [
+  { key: 'home', route: 'home' },
+  { key: 'about', route: 'about' },
+  { key: 'location', route: 'location' },
+  { key: 'gallery', route: 'gallery' },
+  { key: 'services', route: 'services' },
+  { key: 'contact', route: 'contact' },
+];
+---
+
+<ul class="nav__list" id="nav-list">
+  {navItems.map((item) =>
+  {
+    const href = localizedPath(locale, item.route);
+    const isActive =
+      currentPath === item.route ||
+      (item.route === 'home' && currentPath === '');
+
+    return (
+      <li>
+        <a
+          href={href}
+          class:list={[
+            'nav__link',
+            { 'nav__link--active': isActive },
+          ]}
+          aria-current={isActive ? 'page' : undefined}
+        >
+          {t(locale, `nav_${item.key}`)}
+        </a>
+      </li>
+    );
+  })}
+</ul>

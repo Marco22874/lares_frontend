@@ -1,0 +1,106 @@
+---
+/**
+ * @file Footer.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Site footer with contact info, quick
+ *              links, and legal links. Three-column
+ *              responsive grid layout.
+ *
+ * @param {string} locale - Current language code
+ * @returns Rendered footer element
+ * @update 2026-02-11
+ */
+
+import { t, localizedPath } from '@lib/i18n.js';
+
+interface Props
+{
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__col">
+      <h3 class="footer__title">
+        Lares Cohousing
+      </h3>
+      <p>
+        <!-- Address from Directus in production -->
+      </p>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__title">
+        {t(locale, 'nav_services')}
+      </h3>
+      <ul>
+        <li>
+          <a
+            href={localizedPath(locale, 'about')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_about')}
+          </a>
+        </li>
+        <li>
+          <a
+            href={localizedPath(locale, 'services')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_services')}
+          </a>
+        </li>
+        <li>
+          <a
+            href={localizedPath(locale, 'gallery')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_gallery')}
+          </a>
+        </li>
+        <li>
+          <a
+            href={localizedPath(locale, 'contact')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_contact')}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__title">Legal</h3>
+      <ul>
+        <li>
+          <a
+            href={localizedPath(locale, 'privacy')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_privacy')}
+          </a>
+        </li>
+        <li>
+          <a
+            href={localizedPath(locale, 'cookies')}
+            class="footer__link"
+          >
+            {t(locale, 'nav_cookies')}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>
+      &copy; {currentYear} Lares Cohousing.
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,177 @@
+---
+/**
+ * @file ContactForm.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Contact form with client-side whitelist
+ *              validation, honeypot field for bot
+ *              detection, and server-side submission
+ *              to Directus custom endpoint. Prevents
+ *              XSS and SQL injection attacks.
+ *
+ * @param {string} locale - Current language code
+ * @returns Rendered contact form
+ * @update 2026-02-11
+ */
+
+import { t } from '@lib/i18n.js';
+
+interface Props
+{
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const subjectOptions = [
+  { value: 'info', label: 'Info' },
+  { value: 'visit', label: 'Visit' },
+  { value: 'partnership', label: 'Partnership' },
+  { value: 'other', label: 'Other' },
+];
+---
+
+<form
+  class="form"
+  id="contact-form"
+  novalidate
+  data-locale={locale}
+>
+  <div class="form__group">
+    <label class="form__label" for="contact-name">
+      {t(locale, 'form_name')} *
+    </label>
+    <input
+      class="form__input"
+      type="text"
+      id="contact-name"
+      name="name"
+      required
+      maxlength="100"
+      autocomplete="name"
+      aria-required="true"
+    />
+    <span
+      class="form__error"
+      id="error-name"
+      aria-live="polite"
+    ></span>
+  </div>
+
+  <div class="form__group">
+    <label class="form__label" for="contact-email">
+      {t(locale, 'form_email')} *
+    </label>
+    <input
+      class="form__input"
+      type="email"
+      id="contact-email"
+      name="email"
+      required
+      maxlength="254"
+      autocomplete="email"
+      aria-required="true"
+    />
+    <span
+      class="form__error"
+      id="error-email"
+      aria-live="polite"
+    ></span>
+  </div>
+
+  <div class="form__group">
+    <label class="form__label" for="contact-phone">
+      {t(locale, 'form_phone')}
+    </label>
+    <input
+      class="form__input"
+      type="tel"
+      id="contact-phone"
+      name="phone"
+      maxlength="20"
+      autocomplete="tel"
+    />
+    <span
+      class="form__error"
+      id="error-phone"
+      aria-live="polite"
+    ></span>
+  </div>
+
+  <div class="form__group">
+    <label class="form__label" for="contact-subject">
+      {t(locale, 'form_subject')} *
+    </label>
+    <select
+      class="form__select"
+      id="contact-subject"
+      name="subject"
+      required
+      aria-required="true"
+    >
+      <option value="">--</option>
+      {subjectOptions.map((opt) => (
+        <option value={opt.value}>
+          {opt.label}
+        </option>
+      ))}
+    </select>
+    <span
+      class="form__error"
+      id="error-subject"
+      aria-live="polite"
+    ></span>
+  </div>
+
+  <div class="form__group">
+    <label class="form__label" for="contact-message">
+      {t(locale, 'form_message')} *
+    </label>
+    <textarea
+      class="form__textarea"
+      id="contact-message"
+      name="message"
+      required
+      maxlength="2000"
+      rows="6"
+      aria-required="true"
+    ></textarea>
+    <span
+      class="form__error"
+      id="error-message"
+      aria-live="polite"
+    ></span>
+  </div>
+
+  {/* Honeypot - hidden from real users */}
+  <div class="form__hp" aria-hidden="true">
+    <label for="contact-website">Website</label>
+    <input
+      type="text"
+      id="contact-website"
+      name="honeypot"
+      tabindex="-1"
+      autocomplete="off"
+    />
+  </div>
+
+  <div
+    class="form__status"
+    id="form-status"
+    role="alert"
+    aria-live="polite"
+  ></div>
+
+  <button
+    class="btn btn--primary"
+    type="submit"
+    id="contact-submit"
+  >
+    {t(locale, 'form_send')}
+  </button>
+</form>
+
+<script
+  src="/scripts/contact-form.js"
+  defer
+></script>

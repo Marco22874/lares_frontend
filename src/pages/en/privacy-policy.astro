@@ -1,0 +1,35 @@
+---
+/**
+ * @file en/privacy-policy.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Privacy Policy page (English).
+ *              Legal text from Directus CMS.
+ *
+ * @returns Rendered privacy policy page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'en';
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy policy of Lares Cohousing."
+  locale={locale}
+  currentPath="privacy"
+  pagePath="privacy-policy"
+>
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">
+        Privacy Policy
+      </h1>
+      <div class="content">
+        <!-- Legal text from Directus -->
+      </div>
+    </div>
+  </section>
+</BaseLayout>

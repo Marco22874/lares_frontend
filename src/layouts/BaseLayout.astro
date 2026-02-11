@@ -1,0 +1,87 @@
+---
+/**
+ * @file BaseLayout.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Base layout wrapping all pages. Includes
+ *              SEO head, header, footer, cookie banner,
+ *              and global styles. All pages extend this.
+ *
+ * @param {string} title - Page title for SEO
+ * @param {string} description - Page meta description
+ * @param {string} locale - Current language code
+ * @param {string} currentPath - Current route name
+ * @param {string} pagePath - URL path segment
+ * @param {string} image - OG image URL (optional)
+ * @returns Full HTML page wrapper
+ * @update 2026-02-11
+ */
+
+import SEOHead from '@components/SEOHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import CookieBanner from
+  '@components/CookieBanner.astro';
+
+import '@styles/global.css';
+import '@styles/layout.css';
+import '@styles/components.css';
+import '@styles/utilities.css';
+
+interface Props
+{
+  title: string;
+  description: string;
+  locale: string;
+  currentPath?: string;
+  pagePath?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  locale,
+  currentPath = '',
+  pagePath = '',
+  image = '',
+} = Astro.props;
+
+const langMap: Record<string, string> =
+{
+  it: 'it',
+  en: 'en',
+  de: 'de',
+  fr: 'fr',
+};
+---
+
+<!doctype html>
+<html lang={langMap[locale] || 'it'}>
+  <head>
+    <SEOHead
+      title={title}
+      description={description}
+      locale={locale}
+      path={pagePath}
+      image={image}
+    />
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">
+      Skip to content
+    </a>
+
+    <Header
+      locale={locale}
+      currentPath={currentPath}
+    />
+
+    <main class="main" id="main-content">
+      <slot />
+    </main>
+
+    <Footer locale={locale} />
+    <CookieBanner locale={locale} />
+  </body>
+</html>

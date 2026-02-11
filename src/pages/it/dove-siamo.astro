@@ -1,0 +1,47 @@
+---
+/**
+ * @file it/dove-siamo.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Location page (Italian). Shows address,
+ *              directions, and embedded OpenStreetMap.
+ *
+ * @returns Rendered location page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'it';
+---
+
+<BaseLayout
+  title="Dove Siamo"
+  description="Scopri dove si trova Lares Cohousing."
+  locale={locale}
+  currentPath="location"
+  pagePath="dove-siamo"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">Dove Siamo</h1>
+
+      <div class="grid grid--2">
+        <div class="content">
+          <!-- Address from Directus -->
+        </div>
+        <div>
+          <iframe
+            title="Mappa Lares Cohousing"
+            width="100%"
+            height="400"
+            style="border:0;border-radius:var(--border-radius-md)"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,72 @@
+---
+/**
+ * @file Header.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Site header with logo, navigation,
+ *              and language switcher. Includes mobile
+ *              hamburger menu toggle.
+ *
+ * @param {string} locale - Current language code
+ * @param {string} currentPath - Active page path
+ * @returns Rendered header element
+ * @update 2026-02-11
+ */
+
+import Navigation from './Navigation.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props
+{
+  locale: string;
+  currentPath?: string;
+}
+
+const {
+  locale,
+  currentPath = '',
+} = Astro.props;
+---
+
+<header class="header" id="header">
+  <div class="header__inner">
+    <a
+      href={`/${locale}/`}
+      class="header__logo"
+      aria-label="Lares Cohousing - Home"
+    >
+      <img
+        src="/images/logo.svg"
+        alt="Lares Cohousing"
+        width="40"
+        height="40"
+        loading="eager"
+      />
+      <span>Lares Cohousing</span>
+    </a>
+
+    <nav class="nav" aria-label="Main navigation">
+      <button
+        class="nav__toggle"
+        aria-expanded="false"
+        aria-controls="nav-list"
+        aria-label="Toggle menu"
+        type="button"
+      >
+        <span class="nav__toggle-icon"></span>
+      </button>
+
+      <Navigation
+        locale={locale}
+        currentPath={currentPath}
+      />
+
+      <LanguageSwitcher
+        locale={locale}
+        currentPath={currentPath}
+      />
+    </nav>
+  </div>
+</header>
+
+<script src="/scripts/navigation.js" defer></script>

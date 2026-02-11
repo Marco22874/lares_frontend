@@ -1,0 +1,78 @@
+/**
+ * @file utilities.css
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Minimal utility classes for spacing,
+ *              text alignment, visibility, and
+ *              accessibility helpers.
+ *
+ * @update_history
+ *   2026-02-11 - Initial creation
+ */
+
+/* =============================================
+   Text Alignment
+   ============================================= */
+
+.text-center  { text-align: center; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+
+/* =============================================
+   Spacing
+   ============================================= */
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+/* =============================================
+   Visibility
+   ============================================= */
+
+.sr-only
+{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden
+{
+  display: none !important;
+}
+
+/* =============================================
+   Accessibility
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce)
+{
+  *,
+  *::before,
+  *::after
+  {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible for keyboard navigation */
+:focus:not(:focus-visible)
+{
+  outline: none;
+}

@@ -1,0 +1,58 @@
+---
+/**
+ * @file LanguageSwitcher.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Language selector showing IT, EN, DE, FR
+ *              links. Highlights the current locale.
+ *
+ * @param {string} locale - Current language code
+ * @param {string} currentPath - Current page path
+ * @returns Rendered language switcher
+ * @update 2026-02-11
+ */
+
+import { SUPPORTED_LOCALES } from '@lib/i18n.js';
+
+interface Props
+{
+  locale: string;
+  currentPath?: string;
+}
+
+const {
+  locale,
+  currentPath = '',
+} = Astro.props;
+---
+
+<div
+  class="lang-switcher"
+  role="navigation"
+  aria-label="Language"
+>
+  {SUPPORTED_LOCALES.map((lang) =>
+  {
+    const href = currentPath
+      ? `/${lang}/${currentPath}/`
+      : `/${lang}/`;
+    const isActive = lang === locale;
+
+    return (
+      <a
+        href={href}
+        class:list={[
+          'lang-switcher__link',
+          {
+            'lang-switcher__link--active': isActive,
+          },
+        ]}
+        aria-current={isActive ? 'true' : undefined}
+        hreflang={lang}
+        lang={lang}
+      >
+        {lang.toUpperCase()}
+      </a>
+    );
+  })}
+</div>

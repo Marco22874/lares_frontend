@@ -1,0 +1,56 @@
+---
+/**
+ * @file ServiceCard.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Service card component displaying
+ *              icon, title, and description.
+ *              Used in the Services page grid.
+ *
+ * @param {string} title - Service title
+ * @param {string} description - Service description
+ * @param {string} icon - Icon identifier or URL
+ * @param {string} image - Optional image URL
+ * @returns Rendered service card
+ * @update 2026-02-11
+ */
+
+interface Props
+{
+  title: string;
+  description: string;
+  icon?: string;
+  image?: string;
+}
+
+const {
+  title,
+  description,
+  icon,
+  image,
+} = Astro.props;
+---
+
+<article class="card">
+  {image && (
+    <img
+      class="card__image"
+      src={image}
+      alt={title}
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+  <div class="card__body">
+    {icon && (
+      <span
+        class="card__icon"
+        aria-hidden="true"
+      >
+        {icon}
+      </span>
+    )}
+    <h3 class="card__title">{title}</h3>
+    <p class="card__text">{description}</p>
+  </div>
+</article>

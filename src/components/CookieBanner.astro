@@ -1,0 +1,63 @@
+---
+/**
+ * @file CookieBanner.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description GDPR-compliant cookie consent banner.
+ *              Blocks non-essential cookies until user
+ *              gives explicit consent. Options: accept
+ *              all, necessary only, or customize.
+ *
+ * @param {string} locale - Current language code
+ * @returns Rendered cookie banner
+ * @update 2026-02-11
+ */
+
+import { t, localizedPath } from '@lib/i18n.js';
+
+interface Props
+{
+  locale: string;
+}
+
+const { locale } = Astro.props;
+---
+
+<div
+  class="cookie-banner"
+  id="cookie-banner"
+  role="dialog"
+  aria-label="Cookie consent"
+  aria-hidden="true"
+>
+  <div class="cookie-banner__inner">
+    <p class="cookie-banner__text">
+      {t(locale, 'cookie_message')}
+      <a href={localizedPath(locale, 'cookies')}>
+        {t(locale, 'nav_cookies')}
+      </a>
+    </p>
+
+    <div class="cookie-banner__actions">
+      <button
+        class="btn btn--outline"
+        type="button"
+        data-cookie-action="reject"
+      >
+        {t(locale, 'cookie_reject')}
+      </button>
+      <button
+        class="btn btn--primary"
+        type="button"
+        data-cookie-action="accept"
+      >
+        {t(locale, 'cookie_accept')}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script
+  src="/scripts/cookie-consent.js"
+  defer
+></script>

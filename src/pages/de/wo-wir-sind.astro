@@ -1,0 +1,47 @@
+---
+/**
+ * @file de/wo-wir-sind.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Location page (German). Shows address,
+ *              directions, and embedded OpenStreetMap.
+ *
+ * @returns Rendered location page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'de';
+---
+
+<BaseLayout
+  title="Wo Wir Sind"
+  description="Erfahren Sie, wo sich Lares Cohousing befindet."
+  locale={locale}
+  currentPath="location"
+  pagePath="wo-wir-sind"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">Wo Wir Sind</h1>
+
+      <div class="grid grid--2">
+        <div class="content">
+          <!-- Address from Directus -->
+        </div>
+        <div>
+          <iframe
+            title="Lares Cohousing Karte"
+            width="100%"
+            height="400"
+            style="border:0;border-radius:var(--border-radius-md)"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

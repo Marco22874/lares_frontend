@@ -1,0 +1,34 @@
+---
+/**
+ * @file de/ueber-uns.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description About Us page (German). Displays
+ *              information about Lares Cohousing
+ *              project, mission, and team.
+ *
+ * @returns Rendered about page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'de';
+---
+
+<BaseLayout
+  title="Über Uns"
+  description="Erfahren Sie, wer wir sind und unsere Cohousing-Mission."
+  locale={locale}
+  currentPath="about"
+  pagePath="ueber-uns"
+>
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">Über Uns</h1>
+      <div class="content">
+        <!-- Rich text from Directus -->
+      </div>
+    </div>
+  </section>
+</BaseLayout>

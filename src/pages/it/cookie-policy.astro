@@ -1,0 +1,35 @@
+---
+/**
+ * @file it/cookie-policy.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Cookie Policy page (Italian).
+ *              Legal text from Directus CMS.
+ *
+ * @returns Rendered cookie policy page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'it';
+---
+
+<BaseLayout
+  title="Cookie Policy"
+  description="Informativa sui cookie di Lares Cohousing."
+  locale={locale}
+  currentPath="cookies"
+  pagePath="cookie-policy"
+>
+  <section class="section">
+    <div class="container container--narrow">
+      <h1 class="section__title">
+        Cookie Policy
+      </h1>
+      <div class="content">
+        <!-- Legal text from Directus -->
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,47 @@
+---
+/**
+ * @file it/gallery.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Gallery page (Italian). Responsive
+ *              image grid with lightbox. Images from
+ *              Directus gallery collection.
+ *
+ * @returns Rendered gallery page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GalleryGrid from
+  '@components/GalleryGrid.astro';
+
+const locale = 'it';
+
+/*
+ * Production: fetch from Directus
+ * const images = await getCollection(
+ *   'gallery', locale,
+ *   { sort: 'sort',
+ *     'filter[status][_eq]': 'published' }
+ * );
+ */
+const images = [];
+---
+
+<BaseLayout
+  title="Gallery"
+  description="Esplora le immagini di Lares Cohousing."
+  locale={locale}
+  currentPath="gallery"
+  pagePath="gallery"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">Gallery</h1>
+      <GalleryGrid
+        images={images}
+        locale={locale}
+      />
+    </div>
+  </section>
+</BaseLayout>

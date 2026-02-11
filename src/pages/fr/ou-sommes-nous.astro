@@ -1,0 +1,47 @@
+---
+/**
+ * @file fr/ou-sommes-nous.astro
+ * @author Lares Cohousing Dev Team
+ * @date 2026-02-11
+ * @description Location page (French). Shows address,
+ *              directions, and embedded OpenStreetMap.
+ *
+ * @returns Rendered location page
+ * @update 2026-02-11
+ */
+
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const locale = 'fr';
+---
+
+<BaseLayout
+  title="Où Sommes-Nous"
+  description="Découvrez où se trouve Lares Cohousing."
+  locale={locale}
+  currentPath="location"
+  pagePath="ou-sommes-nous"
+>
+  <section class="section">
+    <div class="container">
+      <h1 class="section__title">Où Sommes-Nous</h1>
+
+      <div class="grid grid--2">
+        <div class="content">
+          <!-- Address from Directus -->
+        </div>
+        <div>
+          <iframe
+            title="Carte Lares Cohousing"
+            width="100%"
+            height="400"
+            style="border:0;border-radius:var(--border-radius-md)"
+            loading="lazy"
+            src="https://www.openstreetmap.org/export/embed.html"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
