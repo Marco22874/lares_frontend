@@ -74,10 +74,11 @@
 
   /* Typography */
   --font-family-base:
-    'Segoe UI', system-ui, -apple-system,
+    'Onest', system-ui, -apple-system,
     sans-serif;
   --font-family-heading:
-    'Georgia', 'Times New Roman', serif;
+    'Onest', system-ui, -apple-system,
+    sans-serif;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
