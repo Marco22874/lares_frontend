@@ -1,6 +1,6 @@
 /**
  * @file contact-form.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Client-side contact form validation
  *              using whitelist approach. Validates all

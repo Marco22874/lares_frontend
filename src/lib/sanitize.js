@@ -1,6 +1,6 @@
 /**
  * @file sanitize.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Output sanitization utilities to prevent
  *              XSS attacks. Encodes HTML entities and

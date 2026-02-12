@@ -1,6 +1,6 @@
 /**
  * @file cookie-consent.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description GDPR cookie consent manager. Shows
  *              banner on first visit, stores preference

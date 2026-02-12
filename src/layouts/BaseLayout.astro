@@ -1,7 +1,7 @@
 ---
 /**
  * @file BaseLayout.astro
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Base layout wrapping all pages. Includes
  *              SEO head, header, footer, cookie banner,
@@ -23,6 +23,7 @@ import Footer from '@components/Footer.astro';
 import CookieBanner from
   '@components/CookieBanner.astro';
 
+import '@styles/palettes.css';
 import '@styles/global.css';
 import '@styles/layout.css';
 import '@styles/components.css';
@@ -57,7 +58,7 @@ const langMap: Record<string, string> =
 ---
 
 <!doctype html>
-<html lang={langMap[locale] || 'it'}>
+<html lang={langMap[locale] || 'it'} data-palette="01">
   <head>
     <SEOHead
       title={title}

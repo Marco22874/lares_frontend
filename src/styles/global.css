@@ -1,13 +1,16 @@
 /**
  * @file global.css
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Global styles: CSS reset, custom
  *              properties, and base typography.
  *              Uses CSS Custom Properties for theming.
+ *              Colors mapped from palette system
+ *              (see palettes.css).
  *
  * @update_history
  *   2026-02-11 - Initial creation
+ *   2026-02-12 - Palette system integration
  */
 
 /* =============================================
@@ -16,21 +19,55 @@
 
 :root
 {
-  /* Colors - To be updated with brand colors */
-  --color-primary: #2d5016;
-  --color-primary-light: #4a7a2e;
-  --color-primary-dark: #1a3009;
-  --color-secondary: #8b6914;
-  --color-secondary-light: #b8912a;
-  --color-secondary-dark: #5e470d;
+  /* -----------------------------------------
+     Color System (mapped from active palette)
+     Palette is selected via data-palette attr
+     on <html>. Slots: c1-c5 defined in
+     palettes.css.
+     ----------------------------------------- */
 
+  /* Primary - palette c1 (CTA, accents) */
+  --color-primary: var(--palette-c1);
+  --color-primary-light: color-mix(
+    in srgb, var(--palette-c1) 70%, white
+  );
+  --color-primary-dark: color-mix(
+    in srgb, var(--palette-c1) 70%, black
+  );
+
+  /* Secondary - palette c2 (highlights) */
+  --color-secondary: var(--palette-c2);
+  --color-secondary-light: color-mix(
+    in srgb, var(--palette-c2) 70%, white
+  );
+  --color-secondary-dark: color-mix(
+    in srgb, var(--palette-c2) 70%, black
+  );
+
+  /* Accent - palette c3 */
+  --color-accent: var(--palette-c3);
+
+  /* Dark - palette c4 (text, footer bg) */
+  --color-dark: var(--palette-c4);
+
+  /* Light - palette c5 (alt backgrounds) */
+  --color-light: var(--palette-c5);
+
+  /* Backgrounds */
   --color-bg: #ffffff;
-  --color-bg-alt: #f8f7f4;
-  --color-text: #2c2c2c;
-  --color-text-light: #5a5a5a;
+  --color-bg-alt: var(--palette-c5);
+  --color-text: var(--palette-c4);
+  --color-text-light: color-mix(
+    in srgb, var(--palette-c4) 65%, white
+  );
   --color-text-inverse: #ffffff;
 
-  --color-border: #e0ddd6;
+  /* Borders */
+  --color-border: color-mix(
+    in srgb, var(--palette-c4) 15%, white
+  );
+
+  /* Semantic (non-palette) */
   --color-error: #c0392b;
   --color-success: #27ae60;
   --color-warning: #f39c12;

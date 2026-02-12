@@ -1,6 +1,6 @@
 /**
  * @file gallery.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Lightbox controller for the gallery
  *              page. Opens full-size images in overlay.

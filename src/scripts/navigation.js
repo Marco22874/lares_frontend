@@ -1,6 +1,6 @@
 /**
  * @file navigation.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Handles mobile navigation toggle and
  *              header scroll shadow effect. Pure JS,

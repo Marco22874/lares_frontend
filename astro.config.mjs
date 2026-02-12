@@ -1,6 +1,6 @@
 /**
  * @file astro.config.mjs
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Astro configuration for Lares Cohousing
  *              website. Static site generation with

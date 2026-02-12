@@ -1,6 +1,6 @@
 /**
  * @file validation.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Input validation using whitelist approach.
  *              All values must match allowed patterns;

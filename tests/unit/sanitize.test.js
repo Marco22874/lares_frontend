@@ -1,6 +1,6 @@
 /**
  * @file sanitize.test.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Unit tests for output sanitization
  *              module. Tests HTML encoding, tag

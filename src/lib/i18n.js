@@ -1,6 +1,6 @@
 /**
  * @file i18n.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Internationalization utilities for
  *              multilingual routing and translation

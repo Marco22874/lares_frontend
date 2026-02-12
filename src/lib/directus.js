@@ -1,6 +1,6 @@
 /**
  * @file directus.js
- * @author Lares Cohousing Dev Team
+ * @author Marco De Luca
  * @date 2026-02-11
  * @description Directus REST API client for fetching
  *              multilingual content at build time.
