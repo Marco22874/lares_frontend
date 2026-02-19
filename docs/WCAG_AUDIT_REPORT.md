@@ -22,6 +22,16 @@
 | SEO | 66/100 (noindex volontario) |
 | Conformita WCAG 2.1 AA | Conforme |
 
+### Screenshot PageSpeed Insights
+
+**Mobile**
+
+![PageSpeed Mobile](pagespeed-mobile.png)
+
+**Desktop**
+
+![PageSpeed Desktop](pagespeed-desktop.png)
+
 ---
 
 ## 1. Percepibile
