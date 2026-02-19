@@ -40,7 +40,10 @@ if (!comingSoon)
     />
   </head>
   <body class="cs-body">
-    <main class="cs-wrapper">
+    <a href="#main" class="cs-skip">
+      Vai al contenuto
+    </a>
+    <main id="main" class="cs-wrapper">
       <img
         src="/LARES_LOGO_2-320w.webp"
         srcset="/LARES_LOGO_2-320w.webp 320w,
@@ -54,9 +57,9 @@ if (!comingSoon)
         fetchpriority="high"
       />
 
-      <p class="cs-tagline">
+      <h1 class="cs-tagline">
         Liberi di vivere, insieme.
-      </p>
+      </h1>
 
       <hr class="cs-divider" />
 
@@ -67,10 +70,16 @@ if (!comingSoon)
       </p>
 
       <div class="cs-contact">
-        <a href="mailto:info@larescohousing.it">
+        <a
+          href="mailto:info@larescohousing.it"
+          aria-label="Invia email a info@larescohousing.it"
+        >
           info@larescohousing.it
         </a>
-        <a href="tel:+390833193512">
+        <a
+          href="tel:+390833193512"
+          aria-label="Chiama il numero 0833 193 5512"
+        >
           0833 193 5512
         </a>
         <address class="cs-address">
@@ -95,6 +104,26 @@ if (!comingSoon)
    * Standalone layout, no BaseLayout.
    * Uses palette CSS custom properties.
    */
+
+  .cs-skip
+  {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--palette-c4);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 4px 4px;
+    font-size: var(--font-size-sm);
+    text-decoration: none;
+    z-index: 100;
+  }
+
+  .cs-skip:focus
+  {
+    top: 0;
+  }
 
   .cs-body
   {
