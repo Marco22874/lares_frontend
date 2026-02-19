@@ -29,16 +29,9 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' https://backend.larescohousing.it data:; connect-src 'self' https://backend.larescohousing.it; font-src 'self'; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://backend.larescohousing.it"
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' https://backend.larescohousing.it data:; connect-src 'self' https://backend.larescohousing.it; font-src 'self' https://fonts.gstatic.com; frame-src https://www.openstreetmap.org; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://backend.larescohousing.it"
         }
       ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "/it/",
-      "permanent": false
     }
   ]
 }
