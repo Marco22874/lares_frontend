@@ -42,12 +42,16 @@ if (!comingSoon)
   <body class="cs-body">
     <div class="cs-wrapper">
       <img
-        src="/LARES_LOGO_2.webp"
+        src="/LARES_LOGO_2-320w.webp"
+        srcset="/LARES_LOGO_2-320w.webp 320w,
+                /LARES_LOGO_2-480w.webp 480w"
+        sizes="(max-width: 480px) 240px, 320px"
         alt="Lares Cohousing"
         class="cs-logo"
-        width="842"
-        height="257"
+        width="320"
+        height="97"
         loading="eager"
+        fetchpriority="high"
       />
 
       <p class="cs-tagline">
@@ -148,7 +152,7 @@ if (!comingSoon)
     font-size: var(--font-size-md);
     line-height: var(--line-height-base);
     color: color-mix(
-      in srgb, var(--palette-c4) 75%, white
+      in srgb, var(--palette-c4) 85%, white
     );
   }
 
@@ -163,7 +167,7 @@ if (!comingSoon)
 
   .cs-contact a
   {
-    color: var(--palette-c1);
+    color: #c4512e;
     text-decoration: none;
     font-weight: 500;
     transition: color var(--transition-fast);
@@ -186,7 +190,7 @@ if (!comingSoon)
   {
     font-style: normal;
     color: color-mix(
-      in srgb, var(--palette-c4) 65%, white
+      in srgb, var(--palette-c4) 80%, white
     );
   }
 
@@ -195,7 +199,7 @@ if (!comingSoon)
     width: 100%;
     padding: var(--spacing-lg) var(--spacing-md);
     background-color: var(--palette-c4);
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.85);
     font-size: var(--font-size-sm);
     text-align: center;
     margin-top: auto;

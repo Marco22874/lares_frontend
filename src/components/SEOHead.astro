@@ -222,7 +222,7 @@ const jsonLd = jsonLdType === 'Organization'
   <meta name="twitter:image" content={image} />
 )}
 
-{/* Google Fonts - Onest */}
+{/* Google Fonts - Onest (async, non-blocking) */}
 <link
   rel="preconnect"
   href="https://fonts.googleapis.com"
@@ -233,9 +233,17 @@ const jsonLd = jsonLdType === 'Organization'
   crossorigin
 />
 <link
+  rel="preload"
+  as="style"
   href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap"
-  rel="stylesheet"
+  onload="this.onload=null;this.rel='stylesheet'"
 />
+<noscript>
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap"
+  />
+</noscript>
 
 {/* JSON-LD Structured Data */}
 <script
