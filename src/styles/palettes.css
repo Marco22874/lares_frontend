@@ -2,14 +2,13 @@
  * @file palettes.css
  * @author Marco De Luca
  * @date 2026-02-12
- * @description Color palette definitions. Each palette
- *              defines 5 color slots (c1-c5). The active
- *              palette is selected via data-palette on
- *              <html>. To switch palette, change the
- *              attribute value: data-palette="01" to "02".
+ * @description Color palette definition. Defines 5 color
+ *              slots (c1-c5) applied via data-palette
+ *              attribute on <html>.
  *
  * @update_history
  *   2026-02-12 - Initial creation with 4 palettes
+ *   2026-02-19 - Removed palettes 02, 03, 04
  */
 
 /* =============================================
@@ -23,43 +22,4 @@
   --palette-c3: #d1f59d;
   --palette-c4: #0e3d45;
   --palette-c5: #f8f0db;
-}
-
-/* =============================================
-   Palette 02 - Garden Fresh
-   ============================================= */
-
-[data-palette="02"]
-{
-  --palette-c1: #afcda7;
-  --palette-c2: #ede159;
-  --palette-c3: #fe6442;
-  --palette-c4: #35262d;
-  --palette-c5: #ffffff;
-}
-
-/* =============================================
-   Palette 03 - Earth Tones
-   ============================================= */
-
-[data-palette="03"]
-{
-  --palette-c1: #a4b0a6;
-  --palette-c2: #c09336;
-  --palette-c3: #68663d;
-  --palette-c4: #af6634;
-  --palette-c5: #ffffff;
-}
-
-/* =============================================
-   Palette 04 - Tropical Breeze
-   ============================================= */
-
-[data-palette="04"]
-{
-  --palette-c1: #f2f5d8;
-  --palette-c2: #b0daaa;
-  --palette-c3: #f79564;
-  --palette-c4: #4e4936;
-  --palette-c5: #09817d;
 }

@@ -21,6 +21,7 @@ export default defineConfig(
     routing:
     {
       prefixDefaultLocale: true,
+      redirectToDefaultLocale: false,
     },
   },
   build:

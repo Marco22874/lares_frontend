@@ -157,7 +157,7 @@
 
 .footer
 {
-  background-color: var(--color-primary-dark);
+  background-color: var(--palette-c4);
   color: var(--color-text-inverse);
   padding-block: var(--spacing-2xl);
 }

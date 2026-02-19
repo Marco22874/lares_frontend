@@ -3,13 +3,221 @@
  * @file index.astro
  * @author Marco De Luca
  * @date 2026-02-11
- * @description Root page that redirects to the default
- *              locale (/it/). This page is never
- *              rendered directly.
+ * @description Root page. When PUBLIC_COMING_SOON env
+ *              is true, renders a standalone landing
+ *              page with logo and contact info.
+ *              Otherwise redirects to /it/.
  *
- * @returns Redirect to /it/
- * @update 2026-02-11
+ * @returns Coming soon page or redirect to /it/
+ * @update 2026-02-19
  */
 
-return Astro.redirect('/it/');
+import SEOHead from '@components/SEOHead.astro';
+import '@styles/palettes.css';
+import '@styles/global.css';
+
+const comingSoon =
+  import.meta.env.PUBLIC_COMING_SOON === 'true'
+  || import.meta.env.PUBLIC_COMING_SOON === true;
+
+if (!comingSoon)
+{
+  return Astro.redirect('/it/');
+}
 ---
+
+<!doctype html>
+<html lang="it" data-palette="01">
+  <head>
+    <SEOHead
+      title="Prossimamente"
+      description="Lares Cohousing - Stiamo arrivando. Liberi di vivere, insieme."
+      locale="it"
+      path=""
+    />
+    <meta
+      name="robots"
+      content="noindex, nofollow"
+    />
+  </head>
+  <body class="cs-body">
+    <div class="cs-wrapper">
+      <img
+        src="/LARES_LOGO_2.webp"
+        alt="Lares Cohousing"
+        class="cs-logo"
+        width="842"
+        height="257"
+        loading="eager"
+      />
+
+      <p class="cs-tagline">
+        Liberi di vivere, insieme.
+      </p>
+
+      <hr class="cs-divider" />
+
+      <p class="cs-message">
+        Il nostro sito &egrave; in fase di
+        realizzazione.<br />
+        Presto saremo online!
+      </p>
+
+      <div class="cs-contact">
+        <a href="mailto:info@larescohousing.it">
+          info@larescohousing.it
+        </a>
+        <a href="tel:+390833193512">
+          0833 193 5512
+        </a>
+        <address class="cs-address">
+          Via Vespucci 13/15<br />
+          73056 Taurisano (LE)
+        </address>
+      </div>
+    </div>
+
+    <footer class="cs-footer">
+      <p>
+        &copy; {new Date().getFullYear()} Lares
+        Cohousing
+      </p>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  /**
+   * Coming Soon page styles.
+   * Standalone layout, no BaseLayout.
+   * Uses palette CSS custom properties.
+   */
+
+  .cs-body
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--palette-c5);
+    color: var(--palette-c4);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .cs-wrapper
+  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    max-width: 600px;
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .cs-logo
+  {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .cs-tagline
+  {
+    font-size: var(--font-size-xl);
+    font-weight: 300;
+    color: var(--palette-c4);
+    line-height: var(--line-height-base);
+  }
+
+  .cs-divider
+  {
+    width: 80px;
+    height: 3px;
+    background-color: var(--palette-c1);
+    border: none;
+    border-radius: 2px;
+  }
+
+  .cs-message
+  {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-base);
+    color: color-mix(
+      in srgb, var(--palette-c4) 75%, white
+    );
+  }
+
+  .cs-contact
+  {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+  }
+
+  .cs-contact a
+  {
+    color: var(--palette-c1);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+  }
+
+  .cs-contact a:hover,
+  .cs-contact a:focus-visible
+  {
+    color: var(--palette-c4);
+    text-decoration: underline;
+  }
+
+  .cs-contact a:focus-visible
+  {
+    outline: 2px solid var(--palette-c1);
+    outline-offset: 2px;
+  }
+
+  .cs-address
+  {
+    font-style: normal;
+    color: color-mix(
+      in srgb, var(--palette-c4) 65%, white
+    );
+  }
+
+  .cs-footer
+  {
+    width: 100%;
+    padding: var(--spacing-lg) var(--spacing-md);
+    background-color: var(--palette-c4);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-sm);
+    text-align: center;
+    margin-top: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 480px)
+  {
+    .cs-logo
+    {
+      max-width: 240px;
+    }
+
+    .cs-tagline
+    {
+      font-size: var(--font-size-lg);
+    }
+
+    .cs-message
+    {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>
