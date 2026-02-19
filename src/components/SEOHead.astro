@@ -5,15 +5,18 @@
  * @date 2026-02-11
  * @description SEO meta tags component with support
  *              for multilingual hreflang, Open Graph,
- *              and structured data.
+ *              Twitter Card, JSON-LD structured data,
+ *              and complete favicon set.
  *
  * @param {string} title - Page title
  * @param {string} description - Meta description
  * @param {string} locale - Current language code
  * @param {string} path - Current page path
  * @param {string} image - OG image URL (optional)
+ * @param {boolean} noindex - Exclude from indexing
+ * @param {string} jsonLdType - JSON-LD type
  * @returns Rendered meta tags in <head>
- * @update 2026-02-11
+ * @update 2026-02-19
  */
 
 import {
@@ -27,6 +30,8 @@ interface Props
   locale: string;
   path?: string;
   image?: string;
+  noindex?: boolean;
+  jsonLdType?: 'Organization' | 'WebPage';
 }
 
 const {
@@ -35,6 +40,8 @@ const {
   locale,
   path = '',
   image = '',
+  noindex = false,
+  jsonLdType = 'WebPage',
 } = Astro.props;
 
 const siteUrl =
@@ -50,6 +57,48 @@ const langMap: Record<string, string> =
   de: 'de-DE',
   fr: 'fr-FR',
 };
+
+const fullTitle = `${title} | Lares Cohousing`;
+
+const jsonLd = jsonLdType === 'Organization'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'Lares Cohousing',
+      url: siteUrl,
+      logo: `${siteUrl}/LARES_LOGO_2.webp`,
+      description: description,
+      address:
+      {
+        '@type': 'PostalAddress',
+        streetAddress: 'Via Vespucci 13/15',
+        addressLocality: 'Taurisano',
+        addressRegion: 'LE',
+        postalCode: '73056',
+        addressCountry: 'IT',
+      },
+      contactPoint:
+      {
+        '@type': 'ContactPoint',
+        telephone: '+39-0833-193-5512',
+        email: 'info@larescohousing.it',
+        contactType: 'customer service',
+      },
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: fullTitle,
+      url: canonicalUrl,
+      description: description,
+      inLanguage: langMap[locale],
+      isPartOf:
+      {
+        '@type': 'WebSite',
+        name: 'Lares Cohousing',
+        url: siteUrl,
+      },
+    };
 ---
 
 <meta charset="utf-8" />
@@ -57,8 +106,18 @@ const langMap: Record<string, string> =
   name="viewport"
   content="width=device-width, initial-scale=1"
 />
-<title>{title} | Lares Cohousing</title>
+<title>{fullTitle}</title>
 <meta name="description" content={description} />
+
+{/* Robots */}
+{noindex && (
+  <meta name="robots" content="noindex" />
+)}
+
+{/* Theme color */}
+<meta name="theme-color" content="#0e3d45" />
+
+{/* Canonical */}
 <link rel="canonical" href={canonicalUrl} />
 
 {/* Hreflang tags for all supported locales */}
@@ -75,11 +134,43 @@ const langMap: Record<string, string> =
   href={`${siteUrl}/it/${path}`}
 />
 
+{/* Favicon */}
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon-16x16.png"
+/>
+<link
+  rel="icon"
+  href="/favicon.ico"
+  sizes="32x32"
+/>
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/apple-touch-icon.png"
+/>
+<link
+  rel="manifest"
+  href="/site.webmanifest"
+/>
+
 {/* Open Graph */}
 <meta property="og:type" content="website" />
 <meta
+  property="og:site_name"
+  content="Lares Cohousing"
+/>
+<meta
   property="og:title"
-  content={`${title} | Lares Cohousing`}
+  content={fullTitle}
 />
 <meta
   property="og:description"
@@ -91,11 +182,39 @@ const langMap: Record<string, string> =
   content={langMap[locale]}
 />
 {image && (
-  <meta property="og:image" content={image} />
+  <>
+    <meta property="og:image" content={image} />
+    <meta property="og:image:width" content="1200" />
+    <meta
+      property="og:image:height"
+      content="630"
+    />
+    <meta
+      property="og:image:alt"
+      content={fullTitle}
+    />
+  </>
+)}
+
+{/* Twitter Card */}
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+/>
+<meta name="twitter:title" content={fullTitle} />
+<meta
+  name="twitter:description"
+  content={description}
+/>
+{image && (
+  <meta name="twitter:image" content={image} />
 )}
 
 {/* Google Fonts - Onest */}
-<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+/>
 <link
   rel="preconnect"
   href="https://fonts.gstatic.com"
@@ -106,9 +225,8 @@ const langMap: Record<string, string> =
   rel="stylesheet"
 />
 
-{/* Favicon */}
-<link
-  rel="icon"
-  type="image/svg+xml"
-  href="/favicon.svg"
+{/* JSON-LD Structured Data */}
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(jsonLd)}
 />
