@@ -10,17 +10,36 @@
  *
  * @returns Rendered home page
  * @update 2026-02-11
+ * @update 2026-02-20 - Integrated Directus content
  */
 
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { t, localizedPath } from '@lib/i18n.js';
+import {
+  getItemBySlug,
+  getSiteSettings,
+} from '@lib/directus.js';
 
 const locale = 'it';
+
+// Fetch page content from Directus
+const page = await getItemBySlug(
+  'pages', 'home', locale
+);
+const settings = await getSiteSettings(locale);
+
+// Extract translated fields
+const tr = page?.translations?.[0] || {};
+const settingsTr = settings?.translations?.[0] || {};
+const pageTitle = tr.title || 'Lares Cohousing';
+const pageContent = tr.content || '';
+const tagline = settingsTr.tagline
+  || 'Vivere insieme, vivere meglio.';
 ---
 
 <BaseLayout
   title="Home"
-  description="Lares Cohousing - Vivere insieme, vivere meglio."
+  description={`Lares Cohousing - ${tagline}`}
   locale={locale}
   currentPath="home"
 >
@@ -28,10 +47,10 @@ const locale = 'it';
     <div class="hero__overlay"></div>
     <div class="hero__content">
       <h1 class="hero__title">
-        Lares Cohousing
+        {settings?.site_name || 'Lares Cohousing'}
       </h1>
       <p class="hero__subtitle">
-        Vivere insieme, vivere meglio.
+        {tagline}
       </p>
       <a
         href={localizedPath(locale, 'about')}
@@ -45,9 +64,9 @@ const locale = 'it';
   <section class="section">
     <div class="container">
       <h2 class="section__title">
-        Benvenuti a Lares
+        {pageTitle}
       </h2>
-      <!-- Content from Directus in production -->
+      <div set:html={pageContent} />
     </div>
   </section>
 
